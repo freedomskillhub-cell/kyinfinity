@@ -1,18 +1,17 @@
-# KYNFINITY static website: upload to the domain's public_html root.
+# KYNFINITY CONSULTING - static site rules for Hostinger/Apache
+Options -MultiViews
 DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
-  RewriteCond %{REQUEST_URI} !^/(assets|media)/ [NC]
-  RewriteRule . /index.html [L]
+  RewriteRule ^ index.html [L]
 </IfModule>
 
 <IfModule mod_headers.c>
-  <FilesMatch "\.html$">
+  <FilesMatch "\.(html)$">
     Header set Cache-Control "no-cache"
   </FilesMatch>
 </IfModule>
